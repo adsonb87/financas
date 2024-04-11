@@ -1,0 +1,28 @@
+{
+  "name": "financas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx ts-node-dev --respawn index.ts",
+    "api": "npx nodemon src/api.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.30",
+    "nodemon": "^3.1.0",
+    "prisma": "^5.11.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.11.0",
+    "axios": "^1.6.8",
+    "eslint": "^9.0.0",
+    "express": "^4.19.2",
+    "express-async-errors": "^3.1.1"
+  }
+}
