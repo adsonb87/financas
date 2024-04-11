@@ -6,7 +6,12 @@ export const TransacaoRouter = (prisma: PrismaClient) => {
   const router = express.Router();
 
   router.get("/", async (req: Request, res: Response) => {
-    const result = await prisma.transacao.findMany();
+    const result = await prisma.transacao.findMany({
+      include: {
+        usuario: true,
+        tags: true,
+      },
+    });
 
     res.status(200).json(result);
   });

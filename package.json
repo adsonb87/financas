@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx ts-node-dev --respawn index.ts",
-    "api": "npx nodemon src/api.ts"
+    "api": "npx nodemon src/api.ts",
+    "csv": "npx nodemon csv.ts"
+  },
+  "prisma": {
+    "seed": "npx ts-node prisma/seed.ts"
   },
   "author": "",
   "license": "ISC",
