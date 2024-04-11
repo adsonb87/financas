@@ -1,4 +1,4 @@
-export type Usuario = {
+export type UsuarioRequestInput = {
   nome: string;
   email: string;
   senha: string;

@@ -1,5 +1,5 @@
 import { Perfil, PrismaClient } from "@prisma/client";
-import { Usuario } from "../models/usuarios";
+import { UsuarioRequestInput } from "../models/usuario";
 import express, { Request, Response } from "express";
 
 export const UsuarioRouter = (prisma: PrismaClient) => {
@@ -36,7 +36,7 @@ export const UsuarioRouter = (prisma: PrismaClient) => {
 
   router.put("/:id", async (req: Request, res: Response) => {
     const { id } = req.params;
-    const body = req.body as Usuario;
+    const body = req.body as UsuarioRequestInput;
 
     const usuario = await prisma.usuario.update({
       where: {

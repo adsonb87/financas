@@ -1,3 +1,3 @@
-export type Tag = {
+export type TagRequestInput = {
   nome: string;
 };
