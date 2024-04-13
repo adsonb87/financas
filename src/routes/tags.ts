@@ -4,8 +4,20 @@ import express, { Request, Response } from "express";
 export const TagRouter = (prisma: PrismaClient) => {
   const router = express.Router();
 
+  // router.get("/", async (req: Request, res: Response) => {
+  //   const result = await prisma.tag.findMany();
+
+  //   res.status(200).json(result);
+  // });
+
   router.get("/", async (req: Request, res: Response) => {
-    const result = await prisma.tag.findMany();
+    const result = await prisma.tag.findMany({
+      where: {
+        nome: {
+          contains: "%",
+        },
+      },
+    });
 
     res.status(200).json(result);
   });

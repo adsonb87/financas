@@ -2,15 +2,57 @@ import { PrismaClient } from "@prisma/client";
 import express, { Request, Response } from "express";
 import { TrasnsacaoRequestInput } from "../models/transacao";
 
+interface paginacao {
+  pagina: string;
+  tamanho: string;
+}
+
 export const TransacaoRouter = (prisma: PrismaClient) => {
   const router = express.Router();
 
+  // router.get("/", async (req: Request, res: Response) => {
+  //   const result = await prisma.transacao.findMany({
+  //     include: {
+  //       usuario: true,
+  //       tags: true,
+  //     },
+  //   });
+
+  //   res.status(200).json(result);
+  // });
+
+  // router.get("/", async (req: Request, res: Response) => {
+  //   const result = await prisma.transacao.findMany({
+  //     where: {
+  //       tags: {
+  //         every: {
+  //           nome: {
+  //             contains: "ike",
+  //           },
+  //         },
+  //       },
+  //     },
+  //     include: {
+  //       tags: true,
+  //     },
+  //   });
+
+  //   res.status(200).json(result);
+  // });
+
   router.get("/", async (req: Request, res: Response) => {
+    const { pagina, tamanho } = req.query as unknown as paginacao;
+
+    //skip - quantidade de registros que ele irá pular
+    //take - quantidade de registros por pagina
+    //cursor ele se baseia por um identificador unico
+
     const result = await prisma.transacao.findMany({
-      include: {
-        usuario: true,
-        tags: true,
+      skip: (parseInt(pagina) - 1) * parseInt(tamanho),
+      cursor: {
+        id: 1,
       },
+      take: parseInt(tamanho),
     });
 
     res.status(200).json(result);
